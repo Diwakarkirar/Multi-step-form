@@ -6,13 +6,13 @@ import { isEmail, isStrongPassword } from "validator";
 import correct from "./images/correct.png";
 import wrong from "./images/wrong.png";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
-  // const history = useHistory();
+  const navigate = useNavigate();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [email, setEmail] = useState(false);
   const [pass, setPass] = useState(false);
@@ -31,46 +31,46 @@ export default function App() {
       else setPass(false);
     }
   }
-  // function handleSubmit() {
-  //   if (!email) {
-  //     toast.error("Please Enter Valid Email", {
-  //       position: "top-center",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "light",
-  //     });
-  //   } else if (!pass) {
-  //     toast.error("Please Enter Valid Password", {
-  //       position: "top-center",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "light",
-  //     });
-  //   } else {
-  //     // toast.success("Submitted Successfully", {
-  //     //   position: "top-center",
-  //     //   autoClose: 5000,
-  //     //   hideProgressBar: false,
-  //     //   closeOnClick: true,
-  //     //   pauseOnHover: true,
-  //     //   draggable: true,
-  //     //   progress: undefined,
-  //     //   theme: "light",
-  //     // });
-  //     setIsFormSubmitted(true);
-  //     setEmailEmpty("");
-  //     setPassEmpty("");
-  //     history.push("/form");
-  //   }
-  // }
+  function handleSubmit() {
+    if (!email) {
+      toast.error("Please Enter Valid Email", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (!pass) {
+      toast.error("Please Enter Valid Password", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      // toast.success("Submitted Successfully", {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
+      setIsFormSubmitted(true);
+      setEmailEmpty("");
+      setPassEmpty("");
+      navigate("/form");
+    }
+  }
   return (
     <section className="h-screen">
       <ToastContainer />
@@ -136,16 +136,17 @@ export default function App() {
               </div>
 
               {/* <!-- Submit button --> */}
-              <Link to="/form">
-                <TERipple rippleColor="light" className="w-full">
-                  <button
-                    type="button"
-                    className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                  >
-                    Sign in
-                  </button>
-                </TERipple>
-              </Link>
+
+              <TERipple rippleColor="light" className="w-full">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
+                  Sign in
+                </button>
+              </TERipple>
+
               {/* <!-- Divider --> */}
 
               {/* <!-- Social login buttons --> */}
